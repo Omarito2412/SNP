@@ -1,0 +1,9 @@
+3
+
+Omar Essam, Software engineer, COOLSTARTUP, Sillicon Valley
+Bill gates, Entrepreneur, Microsoft, Sillicon Valley
+Elon Musk, Entrepreneur, Tesla, California
+
+Bill gates, Elon Musk
+Elon Musk
+Omar Essam
