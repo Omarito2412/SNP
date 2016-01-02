@@ -6,16 +6,17 @@ public class SocialNetwork extends Network {
 		network = new HashMap<>();
 		networkCategory1 = new HashMap<>();
 		networkCategory2 = new HashMap<>();
+		peopleInNetwork = new ArrayList<Person>();
 	}
 
 	public void addPerson(Person person) {
 		ArrayList<Person> connections = new ArrayList<Person>();
 		network.put(person, connections);
+		peopleInNetwork.add(person);
 	}
 
 	public void addConnection(Person p1, Person p2) {
 		p1.addConnection(p2, network);
-		p2.addConnection(p1, network);
 	}
 
 	public ArrayList<Person> getConnections(Person person) {

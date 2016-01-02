@@ -25,7 +25,6 @@ public class Utility {
 		}
 		bReader.close();
 		int numOfPeople = Integer.parseInt(lines.get(0));
-
 		for (int i = 1; i <= numOfPeople; i++) {
 			for (int j = 0; j < personInfo.length; j++) {
 				personInfo[j] = lines.get(i).split(", ")[j];
@@ -35,28 +34,31 @@ public class Utility {
 			Person person = new Person(personInfo[0], personInfo[1],
 					personInfo[2], personInfo[3]);
 			socialNetwork.addPerson(person);
+
 		}
 
 		// add connections to the social network
 		String[] connections;
+		int indexOfPerson = 0;
 		for (int i = numOfPeople + 1; i < lines.size(); i++) {
 			connections = new String[lines.get(i).split(", ").length];
-			if (connections.length > 1) {
-				connections = lines.get(i).split(", ");
-				try {
-					for (int j = 1; j < connections.length; j++) {
-						socialNetwork.addConnection(
-								socialNetwork.searchPerson(connections[0]),
-								socialNetwork.searchPerson(connections[j]));
-					}
-				} catch (NullPointerException e) {
-					// throws a null pointer exception if the search method
-					// returns null
-					System.out
-							.println("Can't find a specific person in the network.");
+			connections = lines.get(i).split(", ");
+			try {
+
+				for (int j = 0; j < connections.length; j++) {
+					socialNetwork.addConnection(
+							socialNetwork.peopleInNetwork.get(indexOfPerson),
+							socialNetwork.searchPerson(connections[j]));
 				}
+			} catch (NullPointerException e) {
+				// throws a null pointer exception if the search method
+				// returns null
+				System.out
+						.println("Can't find a specific person in the network.");
 			}
+			indexOfPerson++;
 		}
+
 		return socialNetwork;
 	}
 }

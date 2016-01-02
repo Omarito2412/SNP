@@ -1,13 +1,10 @@
 import java.util.*;
 
 public abstract class Network {
+	public ArrayList<Person> peopleInNetwork;
 	public HashMap<Person, ArrayList<Person>> network;
-	
-	// network in category 1
-	public HashMap<Person, ArrayList<Person>> networkCategory1; 
-	
-	// network in category 2
-	public HashMap<Person, ArrayList<Person>> networkCategory2; 
+	public HashMap<Person, ArrayList<Person>> networkCategory1; // network in category 1
+	public HashMap<Person, ArrayList<Person>> networkCategory2; // network in category 2
 
 	// adding a node in the graph
 	public abstract void addPerson(Person person); 
