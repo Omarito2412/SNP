@@ -55,4 +55,8 @@ public class Person {
 			System.out.println(getName() + " has no connections.");
 		}
 	}
+	
+	public String toString(){
+		return this.name;
+	}
 }

@@ -23,7 +23,7 @@ public abstract class Network {
 
 	public abstract ArrayList<String> showSuggestedFriends(String name);
 
-	public abstract void categorize(Network n);
+	public abstract void categorize();
 
 	public abstract void showPeopleInEachCategory();
 	

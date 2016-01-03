@@ -18,7 +18,11 @@ public class SocialNetwork extends Network {
 	public void addConnection(Person p1, Person p2) {
 		p1.addConnection(p2, network);
 	}
-
+	
+	// Get all instances of Person in the network
+	public ArrayList<Person> getPeopleInNetwork(){
+		return this.peopleInNetwork;
+	}
 	public ArrayList<Person> getConnections(Person person) {
 		return new ArrayList<>(network.get(person));
 	}
@@ -43,8 +47,9 @@ public class SocialNetwork extends Network {
 		return null;
 	}
 
-	public void categorize(Network n) {
+	public void categorize() {
 		// TODO Auto-generated method stub
+		LoadBalancer Balancer = new LoadBalancer(this);
 
 	}
 
