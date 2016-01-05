@@ -49,26 +49,55 @@ public class LoadBalancer {
 			Cut.put(key, originalNet.get(temp));
 		}
 		
-		int PersonPos, EdgePos;
+		int PersonPos, EdgePos, cursor = 0;
 		// Now to the main Algorithm
 		while(nodesCount > 2){
-			// Random nodes selection
+			// Random node selection
 			PersonPos = RandomGen.nextInt(nodesCount);
-			EdgePos = RandomGen.nextInt(Cut.get(PersonPos).size());
+			
 			
 			// The first node, a supernode
 			ArrayList<Person> first = Cut.get(PersonPos);
+			
+			i = Cut.keySet().iterator();
+			cursor = 0;
+			// Retrieve the random super node
+			while(i.hasNext()){
+				if(cursor == PersonPos){
+					first = (ArrayList<Person>) i.next();
+					break;
+				}
+				cursor++;
+			}
 			// The second node, a person
-			Person secondPerson = Cut.get(PersonPos).get(EdgePos);
+			Person secondPerson = null;
+			
+			// Random edge selected
+			EdgePos = RandomGen.nextInt(first.size());
+			
+			i = first.iterator();
+			cursor = 0;
+			// Pick a random person from the list
+			while(i.hasNext()){
+				if(cursor == PersonPos){
+					secondPerson = (Person) i.next();
+					break;
+				}
+				cursor++;
+			}
 			
 			// Now we need the second node's super node
 			
 			// Holder for the super node
 			ArrayList<Person> second = null;
 			i = Cut.keySet().iterator();
+			
 			while(i.hasNext()){
-				if(Cut.get(i.next()).contains(secondPerson)){
-					second = (ArrayList<Person>) i.next();
+				ArrayList<Person> temp = (ArrayList<Person>) i.next();
+				
+				if(temp.contains(secondPerson)){
+					second = temp;
+					
 					break;
 				}
 			}
@@ -77,6 +106,7 @@ public class LoadBalancer {
 			// Make a set to keep unique persons from the two super nodes
 			HashSet<Person> SuperNode = new HashSet<Person>();
 			SuperNode.addAll(first);
+			
 			SuperNode.addAll(second);
 			
 			// A Set to keep unique edges
@@ -96,6 +126,8 @@ public class LoadBalancer {
 			nodesCount--;
 		}
 		System.out.println("DONE");
+		System.out.println(originalNet);
+		System.out.println(Cut);
 		for(ArrayList<Person> k: Cut.keySet()){
 			i = k.iterator();
 			while(i.hasNext()){
