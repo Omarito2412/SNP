@@ -1,4 +1,5 @@
 import java.util.*;
+import java.math.*;
 
 /*
  * This class is responsible for splitting and
@@ -8,23 +9,46 @@ import java.util.*;
  */
 public class LoadBalancer {
 	private HashMap<Person, ArrayList<Person>> originalNet;
-	private HashMap<Person, ArrayList<Person>> Cluster1;
-	private HashMap<Person, ArrayList<Person>> Cluster2;
+	private ArrayList<Person> Cluster1;
+	private ArrayList<Person> Cluster2;
+	private HashMap<ArrayList<Person>, ArrayList<Person>> Solution;
 	
 	public LoadBalancer(Network n) {
+		// Retrieve network from the passed argument
 		this.originalNet = n.network;
-		Contract();
-	}
+		// Initialize cost to a very high integer
+		int cost = 9999999;
+		// Integer Holder
+		int temp = 0;
+		// Keep the best solution
+		HashMap<ArrayList<Person>, ArrayList<Person>> TempSolution = null;
+		// Do i iterations and retrieve the best solution from them
+		for(int i = 0; i < 10; i++){
+			// Contract the network and store its cost
+			temp = Contract();
+			// If this cost is the minimum so far, save it
+			if(temp < cost){
+				cost = temp;
+				TempSolution = this.Solution;
+			}
+		}
+		// Minimum solution we found
+		this.Solution = TempSolution;
+//		System.out.println("Solution found with a cost of: " + cost);
+		Iterator i = this.Solution.keySet().iterator();
+		this.Cluster1 = (ArrayList<Person>) i.next();
+		this.Cluster2 = (ArrayList<Person>) i.next();
+		}
 	
-	public HashMap<Person, ArrayList<Person>> getCluster1(){
+	public ArrayList<Person> getCluster1(){
 		return this.Cluster1;
 	}
 	
-	public HashMap<Person, ArrayList<Person>> getCluster2(){
+	public ArrayList<Person> getCluster2(){
 		return this.Cluster2;
 	}
 	// Contract the supplied Network
-	public void Contract(){
+	public int Contract(){
 		// Number of persons in the network and number of edges for that person
 		int nodesCount=0, edgesCount=0;
 		// Initialize a Random number generator
@@ -57,14 +81,15 @@ public class LoadBalancer {
 			
 			
 			// The first node, a supernode
-			ArrayList<Person> first = Cut.get(PersonPos);
+			ArrayList<Person> first = null;
 			
 			i = Cut.keySet().iterator();
 			cursor = 0;
 			// Retrieve the random super node
 			while(i.hasNext()){
+				ArrayList<Person> temp = (ArrayList<Person>) i.next();
 				if(cursor == PersonPos){
-					first = (ArrayList<Person>) i.next();
+					first = temp;
 					break;
 				}
 				cursor++;
@@ -73,14 +98,15 @@ public class LoadBalancer {
 			Person secondPerson = null;
 			
 			// Random edge selected
-			EdgePos = RandomGen.nextInt(first.size());
+			EdgePos = RandomGen.nextInt(Cut.get(first).size());
 			
-			i = first.iterator();
+			i = Cut.get(first).iterator();
 			cursor = 0;
 			// Pick a random person from the list
 			while(i.hasNext()){
-				if(cursor == PersonPos){
-					secondPerson = (Person) i.next();
+				Person temp = (Person) i.next();
+				if(cursor == EdgePos){
+					secondPerson = temp;
 					break;
 				}
 				cursor++;
@@ -91,13 +117,11 @@ public class LoadBalancer {
 			// Holder for the super node
 			ArrayList<Person> second = null;
 			i = Cut.keySet().iterator();
-			
 			while(i.hasNext()){
 				ArrayList<Person> temp = (ArrayList<Person>) i.next();
 				
 				if(temp.contains(secondPerson)){
 					second = temp;
-					
 					break;
 				}
 			}
@@ -110,33 +134,58 @@ public class LoadBalancer {
 			SuperNode.addAll(second);
 			
 			// A Set to keep unique edges
-			ArrayList<Person> SuperEdge = new ArrayList<Person>();
+			HashSet<Person> SuperEdge = new HashSet<Person>();
 			SuperEdge.addAll(Cut.get(first));
 			SuperEdge.addAll(Cut.get(second));
 			
 			// Remove all the self loops
 			SuperEdge.removeAll(SuperNode);
 
-			// Turn the set to a list
-			ArrayList<Person> temp = new ArrayList<Person>();
-			temp.addAll(SuperNode);
-			Cut.put(temp, SuperEdge);
+			// Turn the super node to a list
+			ArrayList<Person> tempNode = new ArrayList<Person>();
+			
+			// Turn the super edge to a list
+			ArrayList<Person> tempEdge = new ArrayList<Person>();
+			
+			tempNode.addAll(SuperNode);
+			tempEdge.addAll(SuperEdge);
 			Cut.remove(first);
 			Cut.remove(second);
+			Cut.put(tempNode, tempEdge);
 			nodesCount--;
 		}
-		System.out.println("DONE");
-		System.out.println(originalNet);
-		System.out.println(Cut);
-		for(ArrayList<Person> k: Cut.keySet()){
-			i = k.iterator();
-			while(i.hasNext()){
-				System.out.print(i.next() + " - ");
-			}
-			System.out.print("\n");
-		}
+//		for(ArrayList<Person> k: Cut.keySet()){
+//			i = k.iterator();
+//			while(i.hasNext()){
+//				System.out.print(i.next() + " - ");
+//			}
+//			System.out.print("\n");
+//		}
+		this.Solution = Cut;
+		return this.costFunction(Cut);
 	}
 	
+	/* 
+	 * Returns the "Cost" of this computed cut.
+	 * This is to be used for minimizing the
+	 * difference between the two clusters
+	 * thus balancing the load of the
+	 * network.
+	 */
+	
+	private int costFunction(HashMap<ArrayList<Person>, ArrayList<Person>> Cut){
+		Iterator i = Cut.keySet().iterator();
+		int cost = 0;
+		while(i.hasNext()){
+			if(cost == 0){
+				cost = ((ArrayList<Person>) i.next()).size();
+			} else {
+				cost -= ((ArrayList<Person>) i.next()).size();
+			}
+		}
+		
+		return Math.abs(cost);
+	}
 	
 
 }

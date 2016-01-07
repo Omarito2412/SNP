@@ -50,7 +50,8 @@ public class SocialNetwork extends Network {
 	public void categorize() {
 		// TODO Auto-generated method stub
 		LoadBalancer Balancer = new LoadBalancer(this);
-
+		System.out.println(Balancer.getCluster1());
+		System.out.println(Balancer.getCluster2());
 	}
 
 	public void showPeopleInEachCategory() {

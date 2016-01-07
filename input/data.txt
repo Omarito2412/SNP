@@ -1,11 +1,19 @@
-4
+8
 
 A, KK, KK, KK
 B, kk, kk, kk
 C, kk, kk, kk
 D, kk, kk, kk
+E, KK, KK, KK
+F, KK, KK, KK
+G, KK, KK, KK
+H, KK, KK, KK
 
 B
 C, D
-B, D
+B, D, E, F, G, H
 B, C
+A
+H
+H, D
+C
