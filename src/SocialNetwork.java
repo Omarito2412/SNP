@@ -33,8 +33,25 @@ public class SocialNetwork extends Network {
 	}
 
 	public int getNumberOfMutualFriends(String name1, String name2) {
-		// TODO Auto-generated method stub
-		return 0;
+		// Find the two persons
+		Person person1 = this.searchPerson(name1);
+		Person person2 = this.searchPerson(name2);
+		
+		// If any of which doesn't exist, return 0
+		if(person1 == null || person2 == null){
+			return 0;
+		}
+		
+		// Get each person's connections
+		ArrayList<Person> connections1 = network.get(person1);
+		ArrayList<Person> connections2 = network.get(person2);
+		
+		// Get their intersection
+		ArrayList<Person> common = connections1;
+		common.retainAll(connections2);
+		
+		// Return their number
+		return common.size();
 	}
 
 	public ArrayList<String> showPeopleInShortestLink(String name1, String name2) {
