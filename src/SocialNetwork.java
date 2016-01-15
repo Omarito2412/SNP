@@ -54,9 +54,14 @@ public class SocialNetwork extends Network {
 		return common.size();
 	}
 
-	public ArrayList<String> showPeopleInShortestLink(String name1, String name2) {
-		// TODO Auto-generated method stub
-		return null;
+	public void showPeopleInShortestLink(String name1, String name2) {
+		Person source = searchPerson(name1);
+		Person target = searchPerson(name2);
+		HashMap<Person, Person> path;
+		path = searchBFS(source, target);
+
+		// print the shortest link
+		printPath(path, source, target);
 	}
 
 	public ArrayList<String> showSuggestedFriends(String name) {
@@ -106,4 +111,41 @@ public class SocialNetwork extends Network {
 
 		return keyArray;
 	}
+
+
+	private HashMap<Person, Person> searchBFS(Person person1, Person person2) {
+		HashSet<Person> visited = new HashSet<>();
+		HashMap<Person, Person> parent = new HashMap<Person, Person>();
+		Queue<Person> queue = new LinkedList<Person>();
+		queue.add(person1);
+		visited.add(person1);
+		while (!queue.isEmpty()) {
+			Person cur = queue.remove();
+			if (cur.getName().equals(person2.getName())) {
+				return parent;
+			}
+			for (Person n : cur.getConnections()) {
+				if (!visited.contains(n)) {
+					visited.add(n);
+					parent.put(n, cur);
+					queue.add(n);
+				}
+			}
+
+		}
+		return null;
+	}
+
+	private void printPath(HashMap<Person, Person> path, Person source,
+			Person target) {
+		Stack<Person> stack = new Stack<>();
+		stack.add(target);
+		while (path.get(target) != null && path.get(target) != source) {
+			stack.add(path.get(target));
+			target = path.get(target);
+		}
+
+		while (!stack.empty()) {
+			System.out.println(stack.pop().getName());
+		}
 }

@@ -1,9 +1,13 @@
-3
+5
 
 Omar Essam, Software engineer, COOLSTARTUP, Sillicon Valley
 Bill gates, Entrepreneur, Microsoft, Sillicon Valley
 Elon Musk, Entrepreneur, Tesla, California
+Mark Zuckerberg, CEO of Facebook, Facebook, California
+Arianna Huffington, Founder of Huffington Post, Huffington Post, New York
 
-Bill gates, Elon Musk
-Elon Musk
-Omar Essam
+Elon Musk, Mark Zuckerberg
+Arianna Huffington
+Bill gates
+Arianna Huffington
+Bill gates
