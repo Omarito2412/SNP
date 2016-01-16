@@ -8,9 +8,10 @@ public class Bootstrap {
 		SocialNetwork socialNetwork = new SocialNetwork();
 		socialNetwork = Utility.loadGraph(new File("input/data2.txt"));
 //		System.out.println(socialNetwork.getNumberOfMutualFriends("C", "G"));
-		socialNetwork.showPeopleInShortestLink("Omar Essam", "Bill gates");
+		socialNetwork.showPeopleInShortestLink("Omar Essam", "Bill Gates");
 //		socialNetwork.printNetwork();
 //		socialNetwork.categorize();
 	}
 
 }
+	

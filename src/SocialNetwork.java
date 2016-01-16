@@ -148,4 +148,5 @@ public class SocialNetwork extends Network {
 		while (!stack.empty()) {
 			System.out.println(stack.pop().getName());
 		}
+	}
 }
