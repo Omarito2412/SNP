@@ -4,8 +4,6 @@ public class SocialNetwork extends Network {
 
 	public SocialNetwork() {
 		network = new HashMap<>();
-		networkCategory1 = new HashMap<>();
-		networkCategory2 = new HashMap<>();
 		peopleInNetwork = new ArrayList<Person>();
 	}
 
@@ -90,12 +88,28 @@ public class SocialNetwork extends Network {
 	public void categorize() {
 		// TODO Auto-generated method stub
 		LoadBalancer Balancer = new LoadBalancer(this);
-		System.out.println(Balancer.getCluster1());
-		System.out.println(Balancer.getCluster2());
+		
+		// print people in each cluster
+		showPeopleInEachCategory(Balancer);
 	}
 
-	public void showPeopleInEachCategory() {
-		// TODO Auto-generated method stub
+	private void showPeopleInEachCategory(LoadBalancer Balancer) {
+		// get cluster 1 and cluster 2
+		ArrayList<Person> cluster1 = Balancer.getCluster1();
+		ArrayList<Person> cluster2 = Balancer.getCluster2();
+		
+		// print the name of each person in cluster 1
+		System.out.println("Cluster 1");
+		for (Person person : cluster1) {
+			System.out.print(person.getName() + ", ");
+		}
+		System.out.println("\n");
+		
+		// print the name of each person in cluster 2
+		System.out.println("Cluster 2");
+		for (Person person : cluster2) {
+			System.out.print(person.getName() + ", ");
+		}
 
 	}
 
