@@ -57,10 +57,18 @@ public class SocialNetwork extends Network {
 	public void showPeopleInShortestLink(String name1, String name2) {
 		Person source = searchPerson(name1);
 		Person target = searchPerson(name2);
+		if(source == null || target == null) {
+			System.out.println("One of the inputs could not be located in the network.");
+			return;
+		}
 		HashMap<Person, Person> path;
 		path = searchBFS(source, target);
 
 		// print the shortest link
+		if(path == null){
+			System.out.println("No connections were found.");
+			return;
+		}
 		printPath(path, source, target);
 	}
 
