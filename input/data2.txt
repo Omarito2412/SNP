@@ -28,7 +28,7 @@ Arianna Huffington, Yann LeCun, Thom York, Geoffrey Hinton
 Bill Gates, Thom York, Mathew Bellamy
 Yann LeCun, Andrew Ng, Elon Musk, Bill Gates
 Geoffrey Hinton, Andrew Ng
-Geoffrey Hinton, Yann LeCun, Novak Djokovic
+Geoffrey Hinton, Yann LeCun, Novak Djokovic, Vladimir Putin
 Synyster Gates, Thom York, Karim Ahmed
 Mathew Bellamy, Thom York
 Mathew Bellamy
@@ -39,6 +39,6 @@ Omar Essam, Novak Djokovic
 Novak Djokovic
 Roger Fedrer, Leonel Messi
 Bashar Al-Assad
-Vladimir Putin
+Vladimir Putin, Mathew Bellamy
 Omar Essam, Reem Hamdy, Thom York, Roger Fedrer
 

@@ -23,9 +23,10 @@ public class LoadBalancer {
 		// Keep the best solution
 		HashMap<ArrayList<Person>, ArrayList<Person>> TempSolution = null;
 		// Do i iterations and retrieve the best solution from them
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < 20; i++){
 			// Contract the network and store its cost
 			temp = Contract();
+			
 			// If this cost is the minimum so far, save it
 			if(temp < cost){
 				cost = temp;
