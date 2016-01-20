@@ -39,7 +39,8 @@ public class SocialNetwork extends Network {
 		
 		// If any of which doesn't exist, return 0
 		if(person1 == null || person2 == null){
-			return 0;
+			System.out.println("One of the inputs could not be located in the network.");
+			return -1;
 		}
 		
 		// Get each person's connections

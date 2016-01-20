@@ -47,7 +47,7 @@ public class Person {
 	public void printPerson(){
 		System.out.println(getName() + ", "+ getOccupation()+", "+getCompany()+", "+ getAddress());
 		if (!connections.isEmpty()) {
-			System.out.println("Connections");
+			System.out.println("Connections: ");
 			for (Person p : connections) {
 				System.out.println(p.name);
 			}
