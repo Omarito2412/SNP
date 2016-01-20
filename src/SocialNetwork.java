@@ -55,20 +55,29 @@ public class SocialNetwork extends Network {
 	}
 
 	public void showPeopleInShortestLink(String name1, String name2) {
+		// find the source
 		Person source = searchPerson(name1);
+		
+		// find the target
 		Person target = searchPerson(name2);
+		
+		// print a message if neither the source or target is found in the network
 		if(source == null || target == null) {
 			System.out.println("One of the inputs could not be located in the network.");
 			return;
 		}
+		
+		// get path from source and target
 		HashMap<Person, Person> path;
 		path = searchBFS(source, target);
 
-		// print the shortest link
+		// print a message if no path exists between the source and target 
 		if(path == null){
-			System.out.println("No connections were found.");
+			System.out.println("No connection is found between " + name1 + " and "+ name2);
 			return;
 		}
+		
+		// print the shortest link
 		printPath(path, source, target);
 	}
 
@@ -111,32 +120,59 @@ public class SocialNetwork extends Network {
 
 	private Person[] sort(Set<Person> keySet) {
 		Person[] keyArray = new Person[keySet.size()];
+		
+		// sort the names alphabetically 
 		Arrays.sort((keySet.toArray(keyArray)), new Comparator<Person>() {
 			public int compare(Person o1, Person o2) {
 				return o1.getName().compareTo(o2.getName());
 			}
 		});
 
+		// return the sorted array
 		return keyArray;
 	}
 
 
-	private HashMap<Person, Person> searchBFS(Person person1, Person person2) {
+	private HashMap<Person, Person> searchBFS(Person source, Person target) {
+		
+		// create a HashSet of the visited nodes in the network
 		HashSet<Person> visited = new HashSet<>();
+		
+		// create a HashMap of the current node and its parent in the path
 		HashMap<Person, Person> parent = new HashMap<Person, Person>();
+		
+		// create a queue for the bfs
 		Queue<Person> queue = new LinkedList<Person>();
-		queue.add(person1);
-		visited.add(person1);
+		
+		// add source to the queue
+		queue.add(source);
+		
+		// mark source as visited
+		visited.add(source);
+		
+		// loop through the network till the target is reached
 		while (!queue.isEmpty()) {
+			
+			// remove current node from queue
 			Person cur = queue.remove();
-			if (cur.getName().equals(person2.getName())) {
+			
+			// return the parent HashMap if the current name matches the target name
+			if (cur.getName().equals(target.getName())) {
 				return parent;
 			}
-			for (Person n : cur.getConnections()) {
-				if (!visited.contains(n)) {
-					visited.add(n);
-					parent.put(n, cur);
-					queue.add(n);
+			
+			// loop through the connections of the current node
+			for (Person connection : cur.getConnections()) {
+				if (!visited.contains(connection)) {
+					
+					// mark as visited if connection is not visited 
+					visited.add(connection);
+					
+					// add current node as the parent of this connection
+					parent.put(connection, cur);
+					
+					// add this connection to the queue
+					queue.add(connection);
 				}
 			}
 
@@ -146,13 +182,24 @@ public class SocialNetwork extends Network {
 
 	private void printPath(HashMap<Person, Person> path, Person source,
 			Person target) {
+		
+		// create a stack to print the path in reverse order
 		Stack<Person> stack = new Stack<>();
+		
+		// add target to stack 
 		stack.add(target);
+		
+		// loop till the source is reached and the target is null
 		while (path.get(target) != null && path.get(target) != source) {
+			
+			// add target to stack
 			stack.add(path.get(target));
+			
+			// change the current target to the parent 
 			target = path.get(target);
 		}
 
+		// print stack 
 		while (!stack.empty()) {
 			System.out.println(stack.pop().getName());
 		}
