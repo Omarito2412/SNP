@@ -51,6 +51,7 @@ public class Person {
 			for (Person p : connections) {
 				System.out.println(p.name);
 			}
+			System.out.println("");
 		}else{
 			System.out.println(getName() + " has no connections.");
 		}
