@@ -13,6 +13,7 @@ public class LoadBalancer {
 	private ArrayList<Person> Cluster2;
 	private HashMap<ArrayList<Person>, ArrayList<Person>> Solution;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public LoadBalancer(Network n) {
 		// Retrieve network from the passed argument
 		this.originalNet = n.network;
@@ -49,6 +50,7 @@ public class LoadBalancer {
 		return this.Cluster2;
 	}
 	// Contract the supplied Network
+	@SuppressWarnings("unchecked")
 	public int Contract(){
 		// Number of persons in the network and number of edges for that person
 		int nodesCount=0, edgesCount=0;
@@ -174,6 +176,7 @@ public class LoadBalancer {
 	 * network.
 	 */
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private int costFunction(HashMap<ArrayList<Person>, ArrayList<Person>> Cut){
 		Iterator i = Cut.keySet().iterator();
 		int cost = 0;

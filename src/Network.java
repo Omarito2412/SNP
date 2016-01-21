@@ -19,7 +19,7 @@ public abstract class Network {
 
 	public abstract void showPeopleInShortestLink(String name1, String name2);
 
-	public abstract ArrayList<String> showSuggestedFriends(String name);
+	public abstract void showSuggestedFriends(String name);
 
 	public abstract void categorize();
 	
