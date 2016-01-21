@@ -1,0 +1,43 @@
+20
+
+Omar Essam, Software engineer, COOLSTARTUP, Sillicon Valley
+Bill Gates, Entrepreneur, Microsoft, Sillicon Valley
+Elon Musk, Entrepreneur, Tesla, California
+Mark Zuckerberg, CEO of Facebook, Facebook, California
+Arianna Huffington, Founder of Huffington Post, Huffington Post, New York
+Geoffrey Hinton, Scientist, University of Toronto, Toronto
+Yann LeCun, Scientist, New York University, New York
+Andrew Ng, Scientist, Stanford University, California
+Mathew Bellamy, Musician, Muse, Cambridge
+Synyster Gates, Guitarist, Avenged Sevenfold, California
+Thom York, Musician, Radiohead, Oxfordshire
+Karim Ahmed, Guitarist, Alter Bridge, Osaka
+Reem Hamdy, Software Engineer, Google, Sillicon Valley
+Fernando Torres, Footballer, Athletico Madrid, Madrid
+Leonel Messi, Footballer, FCBarcelona, Barcelona
+Roger Fedrer, Tennis Player, Self, Bern
+Novak Djokovic, Tennis Player, Self, Belgrade
+Vladimir Putin, President, Russian Government, Moscow
+Bashar Al-Assad, Serial Killer, Google, Damascus
+Wael Ghonim, Activist, Google, Cairo
+
+Elon Musk, Mark Zuckerberg, Wael Ghonim, Leonel Messi, Karim Ahmed, Reem Hamdy
+Arianna Huffington, Andrew Ng, Yann LeCun
+Bill Gates, Yann LeCun, Andrew Ng, Roger Fedrer
+Arianna Huffington, Yann LeCun, Thom York, Geoffrey Hinton
+Bill Gates, Thom York, Mathew Bellamy
+Yann LeCun, Andrew Ng, Elon Musk, Bill Gates
+Geoffrey Hinton, Andrew Ng
+Geoffrey Hinton, Yann LeCun, Novak Djokovic, Vladimir Putin
+Synyster Gates, Thom York, Karim Ahmed
+Mathew Bellamy, Thom York
+Mathew Bellamy
+Elon Musk, Leonel Messi, Omar Essam, Reem Hamdy
+Omar Essam, Karim Ahmed, Mark Zuckerberg
+Leonel Messi, Roger Fedrer, Novak Djokovic, Thom York
+Omar Essam, Novak Djokovic
+Novak Djokovic
+Roger Fedrer, Leonel Messi
+Bashar Al-Assad
+Vladimir Putin, Mathew Bellamy
+Omar Essam, Thom York, Roger Fedrer

@@ -44,15 +44,28 @@ public class Person {
 		return connections;
 	}
 	
+	public int getNumberOfChildren(){
+		int number=0;
+		for (int i=0; i<=connections.size(); i++){
+			number++;
+		}
+		return number;
+	}
+	
 	public void printPerson(){
 		System.out.println(getName() + ", "+ getOccupation()+", "+getCompany()+", "+ getAddress());
 		if (!connections.isEmpty()) {
-			System.out.println("Connections");
+			System.out.println("Connections: ");
 			for (Person p : connections) {
 				System.out.println(p.name);
 			}
+			System.out.println("");
 		}else{
 			System.out.println(getName() + " has no connections.");
 		}
+	}
+	
+	public String toString(){
+		return this.name;
 	}
 }

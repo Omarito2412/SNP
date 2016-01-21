@@ -1,9 +1,19 @@
-3
+8
 
-Omar Essam, Software engineer, COOLSTARTUP, Sillicon Valley
-Bill gates, Entrepreneur, Microsoft, Sillicon Valley
-Elon Musk, Entrepreneur, Tesla, California
+A, KK, KK, KK
+B, kk, kk, kk
+C, kk, kk, kk
+D, kk, kk, kk
+E, KK, KK, KK
+F, KK, KK, KK
+G, KK, KK, KK
+H, KK, KK, KK
 
-Bill gates, Elon Musk
-Elon Musk
-Omar Essam
+B
+C, D
+B, D, E, F, G, H
+B, C
+A
+H
+H, D
+C
